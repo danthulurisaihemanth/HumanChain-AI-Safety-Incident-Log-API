@@ -20,7 +20,29 @@ A simple RESTful API service to log and manage hypothetical AI safety incidents,
 ### ScreenShots
 
 ## login_page
-![API Error Responses](https://github.com/danthulurisaihemanth/HumanChain-AI-Safety-Incident-Log-API/blob/master/images/api_error_responses.png)
+![API Error Responses](https://github.com/danthulurisaihemanth/HumanChain-AI-Safety-Incident-Log-API/blob/master/images/login_page.png)
+
+## incidents_api_response
+![API Error Responses](https://github.com/danthulurisaihemanth/HumanChain-AI-Safety-Incident-Log-API/blob/master/images/incidents_api_response.png)
+
+## single_incident_api_response
+![API Error Responses](https://github.com/danthulurisaihemanth/HumanChain-AI-Safety-Incident-Log-API/blob/master/images/single_incident_api_response.png)
+
+## post_request_image
+![API Error Responses](https://github.com/danthulurisaihemanth/HumanChain-AI-Safety-Incident-Log-API/blob/master/images/post_request_image.png)
+
+## database_schema
+![API Error Responses](https://github.com/danthulurisaihemanth/HumanChain-AI-Safety-Incident-Log-API/blob/master/images/database_schema.png)
+
+## delete_incident
+![API Error Responses](https://github.com/danthulurisaihemanth/HumanChain-AI-Safety-Incident-Log-API/blob/master/images/delete_incident.png)
+
+## project setup
+![API Error Responses](https://github.com/danthulurisaihemanth/HumanChain-AI-Safety-Incident-Log-API/blob/master/images/project_setup.png)
+
+## project structure
+![API Error Responses](https://github.com/danthulurisaihemanth/HumanChain-AI-Safety-Incident-Log-API/blob/master/images/project_structure.png)
+
 
 ### Installation
 
