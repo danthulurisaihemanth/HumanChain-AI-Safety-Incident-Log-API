@@ -17,6 +17,11 @@ A simple RESTful API service to log and manage hypothetical AI safety incidents,
 - pip package manager
 - MySQL installed and running
 
+### ScreenShots
+
+## login_page
+![API Error Responses](https://github.com/danthulurisaihemanth/HumanChain-AI-Safety-Incident-Log-API/blob/master/images/api_error_responses.png)
+
 ### Installation
 
 1. Clone this repository or unzip the project files.
