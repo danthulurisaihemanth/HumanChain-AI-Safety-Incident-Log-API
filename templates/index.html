@@ -1,0 +1,196 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Safety Incident Log</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Safety Incident Log</h1>
+            <p>HumanChain - Building safer AI systems</p>
+        </header>
+
+        <div class="main-content">
+            <div class="incident-form-container">
+                <h2>Report New Incident</h2>
+                <form id="incident-form">
+                    <div class="form-group">
+                        <label for="title">Title:</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description:</label>
+                        <textarea id="description" name="description" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="severity">Severity:</label>
+                        <select id="severity" name="severity" required>
+                            <option value="">-- Select Severity --</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit">Submit Incident</button>
+                </form>
+                <div id="form-response" class="response-message"></div>
+            </div>
+
+            <div class="incidents-display">
+                <div class="incidents-header">
+                    <h2>Incident Log</h2>
+                    <button id="refresh-btn" class="btn-refresh">Refresh</button>
+                </div>
+                <div class="incidents-list" id="incidents-list">
+                    <p class="loading-message">Loading incidents...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <template id="incident-template">
+        <div class="incident-card">
+            <div class="incident-header">
+                <h3 class="incident-title"></h3>
+                <span class="incident-severity"></span>
+            </div>
+            <p class="incident-description"></p>
+            <div class="incident-footer">
+                <span class="incident-date"></span>
+                <button class="btn-delete">Delete</button>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load incidents when page is loaded
+            fetchIncidents();
+            
+            // Set up event listeners
+            document.getElementById('refresh-btn').addEventListener('click', fetchIncidents);
+            document.getElementById('incident-form').addEventListener('submit', submitIncident);
+            
+            // Fetch all incidents from the API
+            function fetchIncidents() {
+                const incidentsList = document.getElementById('incidents-list');
+                incidentsList.innerHTML = '<p class="loading-message">Loading incidents...</p>';
+                
+                fetch('/incidents')
+                    .then(response => response.json())
+                    .then(incidents => {
+                        incidentsList.innerHTML = '';
+                        if (incidents.length === 0) {
+                            incidentsList.innerHTML = '<p class="no-incidents">No incidents reported.</p>';
+                            return;
+                        }
+                        
+                        const template = document.getElementById('incident-template');
+                        
+                        incidents.forEach(incident => {
+                            const incidentCard = document.importNode(template.content, true);
+                            
+                            // Fill in the data
+                            incidentCard.querySelector('.incident-title').textContent = incident.title;
+                            incidentCard.querySelector('.incident-description').textContent = incident.description;
+                            incidentCard.querySelector('.incident-severity').textContent = incident.severity;
+                            incidentCard.querySelector('.incident-severity').classList.add(`severity-${incident.severity.toLowerCase()}`);
+                            
+                            // Format date
+                            const date = new Date(incident.reported_at);
+                            incidentCard.querySelector('.incident-date').textContent = date.toLocaleString();
+                            
+                            // Set up delete button
+                            const deleteBtn = incidentCard.querySelector('.btn-delete');
+                            deleteBtn.setAttribute('data-id', incident.id);
+                            deleteBtn.addEventListener('click', function() {
+                                deleteIncident(incident.id);
+                            });
+                            
+                            incidentsList.appendChild(incidentCard);
+                        });
+                    })
+                    .catch(error => {
+                        incidentsList.innerHTML = '<p class="error-message">Error loading incidents.</p>';
+                        console.error('Error fetching incidents:', error);
+                    });
+            }
+            
+            // Submit a new incident
+            function submitIncident(event) {
+                event.preventDefault();
+                
+                const formData = {
+                    title: document.getElementById('title').value,
+                    description: document.getElementById('description').value,
+                    severity: document.getElementById('severity').value
+                };
+                
+                fetch('/incidents', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Display success message
+                    const formResponse = document.getElementById('form-response');
+                    formResponse.textContent = 'Incident reported successfully!';
+                    formResponse.className = 'response-message success';
+                    
+                    // Clear form
+                    document.getElementById('incident-form').reset();
+                    
+                    // Refresh incidents list
+                    setTimeout(fetchIncidents, 1000);
+                    
+                    // Clear success message after a few seconds
+                    setTimeout(() => {
+                        formResponse.textContent = '';
+                        formResponse.className = 'response-message';
+                    }, 3000);
+                })
+                .catch(error => {
+                    // Display error message
+                    const formResponse = document.getElementById('form-response');
+                    formResponse.textContent = 'Error submitting incident.';
+                    formResponse.className = 'response-message error';
+                    console.error('Error:', error);
+                });
+            }
+            
+            // Delete an incident
+            function deleteIncident(id) {
+                if (confirm(`Are you sure you want to delete incident #${id}?`)) {
+                    fetch(`/incidents/${id}`, {
+                        method: 'DELETE'
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Refresh incidents list
+                        fetchIncidents();
+                    })
+                    .catch(error => {
+                        console.error('Error deleting incident:', error);
+                        alert('Error deleting incident.');
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
