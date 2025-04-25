@@ -11,6 +11,9 @@ A simple RESTful API service to log and manage hypothetical AI safety incidents,
 - **Api's**:RESTful APIs using Flask
 - **Frontend**: HTML, CSS
 
+## 🧪 Tools Used
+- Postman (for testing API endpoints)
+
 ## Setup Instructions
 
 ### Prerequisites
@@ -22,7 +25,7 @@ A simple RESTful API service to log and manage hypothetical AI safety incidents,
 <h3>🎥 Project Demo</h3>
 
 <p align="center">
-  <a href="https://drive.google.com/file/d/YOUR_VIDEO_ID/view?usp=sharing" target="_blank">▶️ Click here to watch the demo video</a>
+  <a href="https://drive.google.com/file/d/1sDFmNQykfFnHce_RDeDeSk0VfJ2-fmmg/view?usp=sharing" target="_blank">▶️ Click here to watch the demo video</a>
 </p>
 
 ### ScreenShots
