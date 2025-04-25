@@ -182,7 +182,7 @@ def create_incident():
         if conn is None:
             return jsonify({"error": "Database connection failed"}), 500
         
-        cursor = conn.cursor()
+        cursor = conn.cursor(dictionary=True)
         cursor.execute(''' 
             INSERT INTO incidents (title, description, severity, reported_at)
             VALUES (%s, %s, %s, %s)
@@ -239,7 +239,6 @@ def delete_incident(id):
             return jsonify({"error": "Database connection failed"}), 500
         
         cursor = conn.cursor()
-        
         # Check if incident exists
         cursor.execute("SELECT COUNT(*) FROM incidents WHERE id = %s", (id,))
         count = cursor.fetchone()[0]
