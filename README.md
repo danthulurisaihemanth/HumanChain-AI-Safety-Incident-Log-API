@@ -7,7 +7,9 @@ A simple RESTful API service to log and manage hypothetical AI safety incidents,
 - **Language**: Python
 - **Framework**: Flask
 - **Database**: MySQL
-- **Frontend**: HTML, CSS, JavaScript
+- **Backend**:Flask(python)
+- **Api's**:RESTful APIs using Flask
+- **Frontend**: HTML, CSS
 
 ## Setup Instructions
 
