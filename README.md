@@ -21,7 +21,7 @@ A simple RESTful API service to log and manage hypothetical AI safety incidents,
 
 <p align="center">
   <a href="https://drive.google.com/file/d/YOUR_VIDEO_ID/view?usp=sharing" target="_blank">
-    <img src="https://img.youtube.com/vi/your_video_id/0.jpg" alt="Watch the video" width="60%">
+    <img src="" alt="▶️Watch the video" width="60%">
     <!-- Note: You'll need to provide your own thumbnail image -->
   </a>
 </p>
