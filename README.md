@@ -17,6 +17,8 @@ A simple RESTful API service to log and manage hypothetical AI safety incidents,
 - pip package manager
 - MySQL installed and running
 
+### Project Video
+
 ### ScreenShots
 
 ## login_page
@@ -284,3 +286,11 @@ The UI is styled with CSS and provides a responsive design that works on both de
 3. Add search and filtering capabilities
 4. Implement data export functionality (CSV, JSON)
 5. Add more detailed statistics and reporting features
+
+## License
+This project is licensed under the MIT License.
+
+## Author
+Developed by D. Sai Hemanth Varma
+
+
