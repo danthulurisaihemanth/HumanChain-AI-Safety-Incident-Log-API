@@ -7,7 +7,11 @@ import os
 import json
 
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    template_folder=os.path.join(os.path.dirname(os.path.dirname(__file__)), 'templates'),
+    static_folder=os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static')
+)
 CORS(app)  # Enable CORS for all routes
 
 # MySQL connection configuration
@@ -261,7 +265,6 @@ def delete_incident(id):
         return jsonify({"error": "Failed to delete incident"}), 500
 
 
-if __name__ == '__main__':
-    ensure_static_dir()
-    initialize_database()
-    app.run(debug=True)
+ensure_static_dir()
+initialize_database()
+app = app  # expose the app for Vercel
