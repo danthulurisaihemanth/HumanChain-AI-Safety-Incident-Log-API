@@ -1,6 +1,7 @@
 # requirements.txt
 Flask==2.3.3
 mysql-connector-python==8.0.33
+flask-cors
 
 ## 🧪 Tools Used
 - Postman (for testing API endpoints)
