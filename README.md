@@ -25,7 +25,7 @@ A simple RESTful API service to log and manage hypothetical AI safety incidents,
 <h3>🎥 Project Demo</h3>
 
 <p align="center">
-  <a href="https://drive.google.com/file/d/1sDFmNQykfFnHce_RDeDeSk0VfJ2-fmmg/view?usp=sharing" target="_blank">▶️ Click here to watch the project implementation video</a>
+  <a href="https://drive.google.com/file/d/1sDFmNQykfFnHce_RDeDeSk0VfJ2-fmmg/view?usp=sharing" target="_blank">▶️ Click here to Watch the Project Implementation Video</a>
 </p>
 
 ### ScreenShots
